@@ -1,5 +1,48 @@
 public class Library {
-    // Add the missing implementation to this class
+    Book[] books;
+    int numBooks;
+    String address;
+
+    Library(String direccion) {
+        address = direccion;
+        books = new Book[10];
+        numBooks = 0;
+    }
+
+    public void addBook(Book b) {
+        if (numBooks < books.length) {
+            books[numBooks] = b;
+            numBooks++;
+        }
+    }
+
+    public static void printOpeningHours() {
+        System.out.println("9AM");
+    }
+
+    public void printAddress() {
+        System.out.println(address);
+    }
+
+    public void borrowBook(String bookName) {
+        for (int i = 0; i < numBooks; i++) {
+            if (books[i].getTitle().equals(bookName))
+                books[i].borrowed();
+        }
+    }
+
+    public void printAvailableBooks() {
+        for (int i = 0; i < numBooks; i++)
+            if (books[i].isBorrowed() == false)
+                System.out.println(books[i].getTitle());
+    }
+
+    public void returnBook(String bookName) {
+        for (int i = 0; i < numBooks; i++) {
+            if (books[i].getTitle().equals(bookName))
+                books[i].returned();
+        }
+    }
 
     public static void main(String[] args) {
         // Create two libraries
@@ -46,4 +89,4 @@ public class Library {
         System.out.println("Books available in the first library:");
         firstLibrary.printAvailableBooks();
     }
-} 
+}
